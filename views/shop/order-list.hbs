@@ -1,0 +1,48 @@
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section ">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <h1> Orders</h1>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container p-t-100 mb-5 justify-content-center" style="border-style: outset; margin-top: 50px;">
+    <table class="table table-borderless table-responsive">
+        <thead>
+            <tr>
+                <th scope="col">OrderID &amp; Date</th>
+                <th scope="col">Address</th>
+                <th scope="col">Amount</th>
+                <th scope="col">Payment</th>
+                <th scope="col">Order status</th>
+                <th scope="col">Details</th>
+            </tr>
+        </thead>
+        {{#each orders}}
+        <tbody>
+            <tr>
+                <td class="text-uppercase">ID :{{this._id}}
+                    <br>
+                    Date:{{this.date}}
+                </td>
+
+
+                <td>{{this.deliveryDetails.name}} <br> {{this.deliveryDetails.address}}<br>
+                   Pin : {{this.deliveryDetails.pincode}}
+                    <br>
+                    Phone : {{this.deliveryDetails.mobile}}
+                </td>
+                <td>₹ {{this.deliveryDetails.totalAmount}} /-</td>
+                <td>{{this.paymentMethod}}</td>
+                <td>{{this.status}}</td>
+                <td><a href="/view-order-products/{{this._id}}"  class="btn btn-outline-primary">View</a></td>
+            </tr>
+        </tbody>
+        {{/each}}
+    </table>
+</div>

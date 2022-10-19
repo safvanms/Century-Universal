@@ -1,0 +1,44 @@
+<div class="breadcrumb-section ">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2 text-center">
+                <div class="breadcrumb-text">
+                    <h1>Product</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container m-t-150 m-b-60" style="margin-top: 50px;">
+    {{#each products}}
+    <div class="row">
+
+        <div class="card d-flex media flex-column flex-sm-row m-l-50 m-b-50" style="width: 500px; margin-top: 10px;">
+
+            <div class="card-body">
+                <h3 class="card-title text-dark font-weight-bold" style="color: rgb(208, 48, 48);">
+                    {{this.product.brand}}</h3>
+                <h6>{{this.product.productName}}</h6>
+                <p>Category: {{this.product.category}}</p>
+                <p>Type: {{this.product.type}}</p>
+                <p>Quantity: {{this.quantity}}</p>
+                <h5 class="card-title ">worth Rs.{{this.product.price}}/-</h5>
+            </div>
+
+            <img class="align-self-center img-fluid" src="/upload/{{this.product.images.[0].filename}}" width="150"
+                height="150" alt="IMG" style="border-radius: 15px;">
+        </div>
+
+
+
+
+    </div>
+
+    {{/each}}
+    <div class="text-center" style="margin-top: 20px; margin-bottom: 20px;">
+        <p> Delivery charges will be applied
+            </p>
+    </div>
+
+</div>

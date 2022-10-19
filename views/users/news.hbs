@@ -1,0 +1,47 @@
+<div class="wrapper " style="background-color: rgb(14, 13, 13);">
+    <div class="container" >
+        <section id="section5" class="blog-area">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="blog-section-title text-center">
+                        <h3>Century Universal Blog</h3>
+                        <h2 style="font-size: 40px;">News & Upcoming Events </h2>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="container blog-section">
+
+                        <div class="text-center mt-4">
+                            {{#each news}}
+                            <div class="col-md-6">
+                                <div class="row mt-4" >
+                                    <div class="blog-section-date col-md-2 col-sm-2 col-xs-12 noPadding">
+
+                                        <p class="month">{{this.month}}</p>
+                                        <p class="date">{{this.eventdate}}</p>
+
+
+                                    </div>
+                                    <div class="container-fluid">
+
+                                        <div class="blog-section-description col-md-2 col-sm-2 col-xs-12 noPadding">
+                                            <h2 class="newshead">{{this.headline}} </h2>
+                                            <p class="newscntnt">{{this.news}}</p>
+
+
+                                            {{/each}}
+                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <hr>
+                    </div>
+                </div>
+                <button type="submit" onClick="refreshPage()" id="btntop"><a class="gotop" href="/home"> <i
+                            class="fa fa fa-home" aria-hidden="true"></i></a></button>
+            </div>
+        </section>
+    </div>
+</div>

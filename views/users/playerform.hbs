@@ -1,0 +1,178 @@
+<a class=""  onclick="history.back()"><i class="fa fa-remove"
+            style="font-size:24px; float: right; padding-top: 30px; padding-right: 30px; color: white;"></i></a>
+<div class="playersform" style="background-image: linear-gradient(to bottom right,#2b3745,#ba9c5c); ">
+  <div class="container " style="margin-top:80px ;color: white; ">
+
+    <div class="wrap">
+      <form action="/admin/addbyplayer" method="post" enctype="multipart/form-data">
+
+
+
+        <div class="form-group" style="margin-top: 50px;">
+
+          <div class="blink_me">
+            <p class="text-center" style="color: rgb(255, 255, 255); margin-bottom: 5px; font-size: 11px;">Please fill
+              all the colums below for include you as a Player
+            </p>
+          </div>
+
+
+          <input type="text" class="form-control "
+            style="border-radius: 20px; background-color: transparent; color:black ;" id="name" aria-describedby="name"
+            name="playerName" placeholder="Enter your Name " required>{{#each this.playerName}}{{/each}}
+        </div>
+
+        <input type="date"  class="form-control "
+          style="border-radius: 20px; background-color: transparent; color:black ; width: fit-content;" id="name"
+          aria-describedby="name" name="dob"  placeholder="Date of Birth" required>
+        <br>
+
+
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Batting Style</label>
+          <select class="form-control " name="style"
+            style="border-radius: 20px; background-color: transparent; color:black ;" id="exampleFormControlSelect1"
+            required>{{#each this.style}} {{/each}}
+            <option value="Right Hand">Right Handed Batter</option>
+            <option value="Left Hand">Left Handed Batter</option>
+          </select>
+        </div>
+
+
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Gender</label>
+          <select class="form-control " name="gender"
+            style="border-radius: 20px; background-color: transparent; color:black ; width: fit-content;"
+            id="exampleFormControlSelect1" required>{{#each this.gender}} {{/each}}
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+        <hr>
+
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="wk" value=" 🧤">
+          <label class="form-check-label " for="flexSwitchCheckChecked">Wicket Keeper</label>
+        </div>
+        <hr>
+
+        
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
+          <label class="form-check-label " for="flexSwitchCheckChecked">All rounder</label>
+        </div>
+        <hr>
+
+
+        <div class="form-group">
+          <label for="exampleFormControlSelect1">Bowling Style</label>
+          <select class="form-control " style="border-radius: 20px; background-color: transparent; color:black ;"
+            id="exampleFormControlSelect1" name="bowlstyle" required>
+            <option>Right Arm Fast</option>
+            <option>Right Arm Medium</option>
+            <option>Left Arm Fast</option>
+            <option>Left Arm Medium</option>
+            <option>Right Arm Off break</option>
+            <option>Right Arm Leg Spin</option>
+            <option>Right Arm Orthodox</option>
+            <option>Left Arm Off spin</option>
+            <option>Left Arm Chinaman</option>
+            <option>Right Arm Orthodox</option>
+            <option value="Other">Other</option>
+            <option value="Not Bowling">Not bowling</option>
+          </select>
+        </div>
+
+        <img src="{{#each this.images}}
+											<img src=" /upload/{{this.filename}}" alt="">
+        {{/each}}" id="imgView" style="width: 100px; height: 100px; margin-left: 10px; margin-bottom: 5px;" />
+        <input id="fileInput" type="file" style="display:none;" name="files" onchange="viewImage(event)" />
+        <input type="button" class="btn btn-warning btn-block mx-auto" value="Upload Your Photo"
+          style="width: fit-content; border-radius: 15px;" onclick="document.getElementById('fileInput').click();" />
+
+
+        <br>
+
+        <div class="formnum mt-2 d-inline-block">
+          <span class="border-end country-code px-2">+91</span>
+          <input type="number" class="form-control" id="ec-mobile-number" aria-describedby="emailHelp"
+            placeholder="Your Phone Number" style="border-radius: 20px; color:black ;" required />
+        </div>
+
+
+
+
+
+
+        <br>
+
+        <br>
+
+        <!-- Trigger/Open The Modal -->
+
+        <button class="btn btn-success" type="submit" id="myBtn"
+          style="border-radius: 15px; float: right; margin-bottom: 30px;">SUBMIT</button>
+
+
+
+
+        <div id="myModal" class="modal">
+
+          <!-- Modal content -->
+          <div class="modal-content"
+            style="background-color: black; color: white; height: 80px; max-width: 550px; height: fit-content;">
+            <span class="close">&times;</span>
+            <p class="text-center"><b
+                style="font-weight:bolder;  background-color: black; color: rgb(255, 242, 0); height: 80px; max-width: 550px; font-size: 30px ; width: fit-content;">
+                Thank You 😀
+
+          </div>
+
+        </div>
+        <!-- The Modal -->
+
+
+      </form>
+    </div>
+  </div>
+</div>
+<button type="submit" onClick="refreshPage()" id="btntop"><a class="gotop" href="/home"> <i class="fa fa fa-home"
+      aria-hidden="true"></i></a></button>
+<script>
+
+  // Get the modal
+  var modal = document.getElementById("myModal");
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtn");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks on the button, open the modal
+  btn.onclick = function () {
+    modal.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function () {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function (event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+
+
+  function viewImage(event) {
+    document.getElementById('imgView').src = URL.createObjectURL(event.target.files[0])
+  }
+
+
+
+
+</script>

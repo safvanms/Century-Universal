@@ -1,0 +1,137 @@
+body {
+  background-color: transparent;
+}
+
+.testimonial-card .card-up {
+  height: 60px;
+  overflow: hidden;
+  border-top-left-radius: 0.25rem;
+  border-top-right-radius: 0.25rem;
+}
+
+.aqua-gradient {
+  background: transparent;
+}
+
+.testimonial-card .avatar {
+  width: 120px;
+  margin-top: -60px;
+  overflow: hidden;
+  border: 5px solid transparent;
+  border-radius: 80%;
+}
+
+.cards {
+  display: inline-block;
+  margin-left: 15px;
+  background-color: #2b3745;
+  border-radius: 10px;
+  margin-bottom: 50px;
+  max-width: 9.3rem;
+  max-height: 150px;
+  margin-top: 25px;
+  border-color: white;
+}
+
+
+
+@media (min-width: 350px) and (max-width: 399px) {
+  .setting {
+    margin-left: 25px;
+    margin-right: 20px;
+  }
+}
+
+@media (min-width: 400px) and (max-width: 599px) {
+  .setting {
+    margin-left: 45px;
+    margin-right: 20px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 900px) {
+  .setting {
+    margin-left: 150px;
+    margin-right: 150px;
+  }
+}
+
+.card {
+  background-color: #151515;
+  border-radius: 10px;
+  
+}
+
+.center-cropped {
+  text-align: center;
+  width: 121px;
+  height: 121px;
+  background-position: center center;
+  background-repeat: no-repeat;
+  object-fit: cover;
+  vertical-align: middle;
+  border-style: none;
+}
+
+.card-title {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #ba9c5c;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-bottom: 8px;
+  padding-top: 5px;
+  font-size: 8px;
+}
+
+.card-sub {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #ba9c5c;
+  margin-top: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  padding-bottom: 10px;
+  padding-top: 0px;
+  font-size: 7.5px;
+}
+
+.pannelbg {
+  /* background-image: linear-gradient(to bottom right, #2b3745, #ba9c5c); */
+background-color: black;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.pannelbgoff {
+  background-image: url("/users/img/mypics/doodle3.jpg");
+  background-color: #f8f8f8;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.pannelbgum {
+  background-image: linear-gradient(to bottom right, #ba9c5c, #2b3745);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+.cardheading {
+  font-size: 22px;
+  font-family: "Times New Roman", Times, serif;
+  white-space: nowrap;
+  margin-top: 5px;
+  text-shadow: 1px 1px 1px black;
+}
+
+@media (min-width: 350px) and (max-width: 599px) {
+  .cardhead {
+    padding-top: 30px;
+    color: black;
+  }
+  .cardheading {
+    font-size: 16px;
+    font-family: "Times New Roman", Times, serif;
+    white-space: nowrap;
+    text-shadow: 1px 1px 1px black;
+  }
+}

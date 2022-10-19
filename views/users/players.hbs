@@ -1,0 +1,52 @@
+<div class="playerspage" style="background-color: black;">
+    <div class="cardhead" >
+    <h6 class=" cardheading"
+        style="text-align: center; margin-top: 70px; color: rgb(255, 255, 255); padding-top: 10px;">PLAYERS</h6>
+        <img class="classic" src="/users/img/new/icon.png">
+    </div>
+
+
+    <div class="pannelbg">
+        <div class="container" style="margin-top:20px; ">
+
+
+            <hr>
+
+
+            <div class="row setting">
+
+                {{#each players}}
+
+                <div class="cards mx-auto">
+                    <div class="card testimonial-card mx-auto">
+                        <div class="card-up aqua-gradient"></div>
+                        <div class="center-cropped avatar mx-auto white">
+
+                            <a href="/player-details/{{this._id}}" class="player-details"><img class="center-cropped"
+                                    src="/upload/{{this.images.[0].filename}}" class="rounded-circle img-fluid"
+                                    alt="Player"> </a>
+                        </div>
+                        <div class="card-body text-center">
+
+                            <p class="card-title font-weight-bold text-uppercase small">
+                                {{this.playerName}}</p>
+
+                            <p class="card-sub small" style="color: white;">
+                                {{this.style}} <span style="font-size: 15px;">{{this.wk}}</span> </p>
+
+                        </div>
+                    </div>
+                </div>
+
+                {{/each}}
+
+
+                <button type="submit" onClick="refreshPage()" id="btntop"><a class="gotop" href="/"> <i
+                            class="fa fa fa-home" aria-hidden="true"></i></a></button>
+
+            </div>
+            <hr>
+        </div>
+
+    </div>
+</div>

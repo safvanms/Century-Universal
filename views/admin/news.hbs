@@ -1,0 +1,45 @@
+<div class='main-panel '>
+    <div class='content-wrapper '>
+        <div class="row">
+            <a class="btn btn-danger mr-auto mr-5 font-weight-bold" href="/admin">Go Home</a>
+            <a class="btn btn-success ml-auto mr-5 font-weight-bold" href="/admin/add-news">+Add News</a>
+        </div>
+
+        <div class='row mt-3'>
+            <div class='col-12 grid-margin'>
+
+                <div class='card'>
+                    <div class='card-body'>
+                        <h4 class='card-title'>CUCC News Or upcoming Events</h4>
+                        <div class='table-responsive'>
+                            <table class='table'>
+                                <thead>
+                                    <tr>
+                                        <th> MONTH </th>
+                                        <th>DATE</th>
+                                        <th>HEADLINE</th>
+                                        <th>NEWS</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {{#each news}}
+                                    <tr>
+                                        <td>{{this.month}}</td>
+                                        <td>{{this.eventdate}}</td>
+                                        <td style="overflow: hidden;
+max-width: 400px;
+word-wrap: break-word;">{{this.headline}}</td>
+                                        <td style="overflow: auto;
+max-width: 400px;
+word-wrap: break-word;">{{this.news}}</td>
+
+
+                                        <td>
+
+                                            <a class='btn btn-outline-danger' href="/admin/delete-news/{{this._id}}"
+                                                onclick="return confirm('Are you want to delete ?')">delete</a>
+                                        </td>
+
+
+                                        {{/each}}

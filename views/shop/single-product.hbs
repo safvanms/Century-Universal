@@ -1,0 +1,107 @@
+<div>
+	<a class="" onclick="history.back()"><i class="fa fa-remove"
+			style="font-size:24px; float: right; padding-top: 30px; padding-right: 20px; color: rgb(0, 0, 0);"></i></a>
+
+	<div style="background-color: white; height: 100%;">
+		<div class="breadcrumb-section breadcrumb-bg" style="margin-top: 50px; ">
+
+			<div class="container">
+
+				<div class="row">
+					<div class="col-lg-8 offset-lg-2 text-center">
+						<div class="breadcrumb-text">
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- end breadcrumb section -->
+
+		<!-- single product -->
+		<div class="single-product mt-150 mb-150">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-5">
+						<div class="single-product-img ">
+							{{!-- <img src="/upload/{{product.images.[0].filename}}" width="300px"
+								style="border-radius: 10px;">
+							<img src="/upload/{{product.images.[1].filename}}" width="300px"
+								style="border-radius: 10px;">
+							<img src="/upload/{{product.images.[2].filename}}" width="300px"
+								style="border-radius: 10px;"> --}}
+
+
+
+							<style>
+								.mySlides {
+									display: none;
+								}
+							</style>
+
+
+
+							<div class="w3-content w3-display-container ">
+								<img class="mySlides" src="/upload/{{product.images.[0].filename}}"
+									style="width:100% ; border-radius: 15px;">
+								<img class="mySlides" src="/upload/{{product.images.[1].filename}}"
+									style="width:100% ;  border-radius: 15px;">
+								<img class="mySlides" src="/upload/{{product.images.[2].filename}}"
+									style="width:100% ; border-radius: 15px;">
+
+								<div class="text-center mt-4">
+									<a class="w3-button w3-black w3-display-left" onclick="plusDivs(-1)"><i
+											class="fa fa-caret-square-o-left"></i></a>&nbsp;&nbsp;
+
+
+									<a class="w3-button w3-black w3-display-right" onclick="plusDivs(1)"><i
+											class="fa fa-caret-square-o-right"></i></a>
+								</div>
+							</div>
+
+
+
+
+						</div>
+					</div>
+					<div class="col-md-7">
+						<div class="single-product-content">
+							<h1>{{product.brand}}</h1>
+							<p style="color: black;">{{product.productName}}</p>
+							<h2 class="single-product-pricing" style="color: green; font-weight: 600;"><span>₹
+									{{product.price}}/-</span></h2>
+							<p>{{product.description}}</p>
+
+							<div class="mt-4">
+								<button class="btn btn-success" style="width:200px;  height: 50px;"><a href="/cart"
+										class="cart-btn" style="color: white;"> Buy now</a>
+								</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<script>
+	var slideIndex = 1;
+	showDivs(slideIndex);
+
+	function plusDivs(n) {
+		showDivs(slideIndex += n);
+	}
+
+	function showDivs(n) {
+		var i;
+		var x = document.getElementsByClassName("mySlides");
+		if (n > x.length) { slideIndex = 1 }
+		if (n < 1) { slideIndex = x.length }
+		for (i = 0; i < x.length; i++) {
+			x[i].style.display = "none";
+		}
+		x[slideIndex - 1].style.display = "block";
+	}
+</script>

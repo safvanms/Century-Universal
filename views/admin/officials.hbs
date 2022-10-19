@@ -1,0 +1,45 @@
+<div class='main-panel '>
+	<div class='content-wrapper '>
+		<div class="row">
+			<a class="btn btn-success ml-auto mr-5 font-weight-bold" href="/admin/add-officials">+Add Officials</a>
+		</div>
+
+		<div class='row mt-3'>
+			<div class='col-12 grid-margin'>
+
+				<div class='card'>
+					<div class='card-body'>
+						<h4 class='card-title'>Officials Of CUCC</h4>
+						<div class='table-responsive'>
+							<table class='table'>
+								<thead>
+									<tr>
+									
+										<th> Name </th>
+										<th>position</th>
+										<th> images </th>
+									</tr>
+								</thead>
+								<tbody>
+
+
+									{{#each officials}}
+									<tr>
+										<td> {{this.officialName}} </td>
+										<td>{{this.position}}</td>
+										
+										<td>{{#each this.images}}
+											<img src="/upload/{{this.filename}}" alt="">
+											{{/each}}
+										<td>
+										<td>
+
+										</td>
+										<td>
+
+											<a class='btn btn-outline-danger' href="/admin/delete-official/{{this._id}}"
+												onclick="return confirm('Are you want to delete ?')">delete</a>
+										</td>
+
+
+										{{/each}}

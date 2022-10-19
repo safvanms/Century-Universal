@@ -1,0 +1,143 @@
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 offset-lg-2 text-center">
+        <div class="breadcrumb-text">
+          <p>Get 24/7 Support</p>
+          <h1>Contact us</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end breadcrumb section -->
+
+<!-- contact form -->
+<div class="contact-from-section mt-150 mb-150">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 mb-5 mb-lg-0">
+        <div class="form-title">
+          <h2>Have you any question?</h2>
+
+        </div>
+        <div id="form_status"></div>
+        <div class="contact-form">
+          <form
+            type="POST"
+            id="fruitkha-contact"
+            onSubmit="return valid_datas( this );"
+          >
+            <p>
+              <input type="text" placeholder="Name" name="name" id="name" />
+              <input type="email" placeholder="Email" name="email" id="email" />
+            </p>
+            <p>
+              <input type="tel" placeholder="Phone" name="phone" id="phone" />
+              <input
+                type="text"
+                placeholder="Subject"
+                name="subject"
+                id="subject"
+              />
+            </p>
+            <p><textarea
+                name="message"
+                id="message"
+                cols="30"
+                rows="10"
+                placeholder="Message"
+              ></textarea></p>
+
+            <input
+			 <button 
+               type="button"
+              class="btn btn-info btn-lg"
+              name="token"
+              value="SUBMIT"
+			  data-target="#myModal"
+			   data-toggle="modal"
+			   style="border-radius: 10px ;"
+            ></button>
+            
+             
+          </form>
+        </div>
+      </div>
+
+      <div class="col-lg-4">
+        <div class="contact-form-wrap">
+          <div class="contact-form-box">
+            <h4><i class="fas fa-map"></i> Shop Address</h4>
+            <p>CENTURY UNIVERSAL CRICKET CLUB<br />TUVVUR P.O
+              <br />
+              Malappuram Dt. Kerala
+              <br />
+              India</p>
+          </div>
+          <div class="contact-form-box">
+            <h4><i class="far fa-clock"></i> Shop Hours</h4>
+            <p>24 x 7 </p>
+          </div>
+          <div class="contact-form-box">
+            <h4><i class="fas fa-address-book"></i> Contact</h4>
+            <p>
+              <i class="fa fa-phone">&nbsp; +91 88 480 25 659</i><br />
+              <i class="fa fa-envelope">
+                &nbsp; centuryuniversalcca@gmail.com</i></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end contact form -->
+
+<!-- find our location -->
+<div class="find-location blue-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <p> <i class="fas fa-map-marker-alt"></i> Find Our Location</p>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end find our location -->
+
+<!-- google map section -->
+<div class="embed-responsive embed-responsive">
+  <div class="maploc">
+    <div class="container">
+      <a
+        href="https://www.google.com/maps/place/Thuvvur+%E0%B4%A4%E0%B5%82%E0%B4%B5%E0%B5%82%E0%B5%BC/@11.1138653,76.2824771,15.42z/data=!4m5!3m4!1s0x3ba62e0864c13785:0x90ffefe4d69c781b!8m2!3d11.1131614!4d76.2858626"
+      ><img src="/assets/img/map.png" /></a>
+
+    </div>
+  </div>
+</div>
+<!-- end google map section -->
+
+<div class="modal fade" id="myModal" role="dialog">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content" style="margin-top: 50%; height: 100px; border-radius: 30px; background-color: black;">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+      <div class="modal-body">
+		<div class="text-center">
+        <b><p style="color: white;">Thankyou for getting touch with us.  </p></b>
+		</div>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+></script>
+<script
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+></script>

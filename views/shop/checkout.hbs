@@ -1,0 +1,144 @@
+<!-- breadcrumb-section -->
+<div class="breadcrumb-section breadcrumb-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2 text-center">
+				<div class="breadcrumb-text">
+					<p>HERE WE GO</p>
+					<h1>Check Out Product</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end breadcrumb section -->
+
+<!-- check out section -->
+<div class="checkout-section mt-150 mb-150">
+
+	<form class="bg0 p-t-75 p-b-85" id="checkout-form">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
+					<div class="m-l-25 m-r--38 m-lr-0-xl">
+						<div class="wrap-table-shopping-cart">
+							<div id="accordion">
+								<div class="card">
+
+									<div class="card-header bg-dark "
+										style=" height: 60px; padding-top: 20px; border-radius: 15px 15px 0px 0px;">
+										<h5 class="mb-0">
+											<div class="text-white" aria-controls="collapseThree">
+												Enter Delivery Details
+											</div>
+										</h5>
+									</div>
+
+
+									<div id="collapseOne" class="collapse show text-small bg-light "
+										aria-labelledby="headingOne" data-parent="#accordion">
+										<div class="card-body">
+											<h4>Delivery Address</h4>
+											<input class="form-control" type="text" name="name"
+												placeholder="Enter Your Name" required /> <br>
+											<input class="form-control m-t-15" type="text"
+												style="height: 80px; padding-bottom: 60px; " name="address"
+												placeholder="Enter your complete Address here " required /><br>
+
+											<input class="form-control m-t-15" type="text" name="district" required
+												placeholder="District" /><br>
+											<input class="form-control m-t-15" type="text" name="state"
+												placeholder="State" required /><br>
+											<input class="form-control m-t-15" type="number" name="pincode" required
+												placeholder="Pin Code" /><br>
+
+											<input class="form-control m-t-15" type="email" name="email"
+												placeholder="Email (not required)" /><br>
+
+											<input class="form-control m-t-15 " style="width: fit-content;" type="tel"
+												name="mobile" placeholder="Phone Number" required /><br>
+
+											<input type="text" name="userId" id="" value="{{user._id}}" hidden />
+
+										</div>
+									</div>
+
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
+					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
+						<div class=""
+							style=" padding-left: 15px; padding-top: 15px; padding-bottom: 15px; padding-top: 20px; margin-bottom: 20px;">
+							<h4 class="mtext-109 cl2 p-b-30">
+								Cart Total
+							</h4>
+							<div class="flex-w flex-t p-t-27 p-b-33">
+								<div class="size-208">
+									<span class="mtext-101 cl2">
+										Total: &nbsp; <span id="ftotal" class="mtext-110 cl2"
+											style="font-size: 25px; font-weight:900; color: rgb(7, 98, 21); ">
+											₹{{ftotal}}.00/- <span>
+												<p style="font-size: 12px; ">(Inclusive of all taxes)</p>
+											</span>
+										</span>
+									</span>
+								</div>
+
+							</div>
+						</div>
+
+						<div class="" style=" padding-left: 15px; padding-top: 15px; padding-bottom: 15px ; ">
+							<h4 class="mtext-109 cl2 p-b-30">
+								Payment Option
+							</h4>
+
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="paymentMethod" id="payment"
+									value="ONLINE" />
+								<label class="form-check-label" for="paymentMethod">
+									Online Payment
+								</label>
+							</div>
+
+							<div class="form-check">
+								<input class="form-check-input" type="radio" name="paymentMethod" id="payment"
+									value="COD" checked />
+								<label class="form-check-label" for="paymentMethod">
+									Cash On Delivery
+								</label>
+							</div>
+
+							<button href="/buy" type="submit" id="submitId"  class="btn btn-warning"
+								style=" border-radius: 15px; border-style: none; height: 40px;  width: 100px; margin-top: 20px;">
+								BUY
+							</button>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+
+</div>
+
+<script>
+	$("#checkout-form").submit((e) => {
+		e.preventDefault()
+		$.ajax({
+			url: '/buy',
+			method: 'post',
+			data: $('#checkout-form').serialize(),
+			success: (response) => {
+				if (response.status) {
+					location.href ='/success'
+				}
+			}
+		})
+	})
+</script>

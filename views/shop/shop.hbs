@@ -1,0 +1,139 @@
+<!-- end header -->
+
+<!-- breadcrumb-section -->
+
+<div class="breadcrumb-section breadcrumb-bg">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-8 offset-lg-2 text-center">
+				<div class="breadcrumb-text">
+					<p>Shop your</p>
+					<h1>Cricket Gears</h1>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!-- end breadcrumb section -->
+
+<!-- products -->
+<div class="product-section mt-150 mb-150">
+	<div class="container">
+		<div class="row">
+			<div class="product-filters">
+				<div id="myBtnContainer">
+					<ul>
+
+						<li> <button class="btn active" onclick="filterSelection('all')"> All</button></li>
+						<li> <button class="btn" onclick="filterSelection('bats')"> Bats</button> </li>
+						<li> <button class="btn" onclick="filterSelection('balls')"> Balls</button></li>
+						<li> <button class="btn" onclick="filterSelection('shoes')"> Shoes</button></li>
+						<li> <button class="btn" onclick="filterSelection('gloves')"> Gloves</button></li>
+						<li> <button class="btn" onclick="filterSelection('helmet')"> Helmet</button> </li>
+						<li> <button class="btn" onclick="filterSelection('guards')"> Leg guards</button></li>
+						<li> <button class="btn" onclick="filterSelection('thighs')"> Thighs</button></li>
+						<li> <button class="btn" onclick="filterSelection('outfits')"> Outfits</button></li>
+						<li> <button class="btn" onclick="filterSelection('accessories')"> Accessories</button>
+						</li>
+
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="container">
+
+
+
+		<div class="row">
+			<!--   bats here   -->
+
+			{{#each products}}
+
+			<div class="filterDiv col-lg-4 col-md-6 text-center bats">
+				<div class="single-product-item">
+					<div class="product-image">
+						{{!-- <a href="#" class="wish"><i class="fas fa-heart"
+								style="font-size:28px; text-shadow: 1px 1px 1px rgb(0, 0, 0); "></i></a> --}}
+						<a href="/single-product/{{this._id}}"> <img src="/upload/{{this.images.[0].filename}}" </a>
+
+					</div>
+					<h3 class="text-center">{{this.brand}}</h3>
+					<p class="text-center">{{this.productName}}</p>
+					<p class="product-price">₹ {{this.price}}/-</p>
+
+					<a onclick="addToCart('{{this._id}}')" class="cart-btn" style="margin-right: 5px;"> Add <i
+							class="fas fa-shopping-cart"></i></button>
+
+						<a href="/cart" class="cart-btn" style="background-color: green;"></i> Buy</a>
+
+				</div>
+			</div>
+
+			{{/each}}
+
+
+			<!--   balls here   -->
+
+
+
+
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<script>
+
+	filterSelection("all")
+	function filterSelection(c) {
+		var x, i;
+		x = document.getElementsByClassName("filterDiv");
+		if (c == "all") c = "";
+		for (i = 0; i < x.length; i++) {
+			w3RemoveClass(x[i], "show");
+			if (x[i].className.indexOf(c) > -1) w3AddClass(x[i], "show");
+		}
+	}
+
+	function w3AddClass(element, name) {
+		var i, arr1, arr2;
+		arr1 = element.className.split(" ");
+		arr2 = name.split(" ");
+		for (i = 0; i < arr2.length; i++) {
+			if (arr1.indexOf(arr2[i]) == -1) { element.className += " " + arr2[i]; }
+		}
+	}
+
+	function w3RemoveClass(element, name) {
+		var i, arr1, arr2;
+		arr1 = element.className.split(" ");
+		arr2 = name.split(" ");
+		for (i = 0; i < arr2.length; i++) {
+			while (arr1.indexOf(arr2[i]) > -1) {
+				arr1.splice(arr1.indexOf(arr2[i]), 1);
+			}
+		}
+		element.className = arr1.join(" ");
+	}
+
+	// Add active class to the current button (highlight it)
+	var btnContainer = document.getElementById("myBtnContainer");
+	var btns = btnContainer.getElementsByClassName("btn");
+	for (var i = 0; i < btns.length; i++) {
+		btns[i].addEventListener("click", function () {
+			var current = document.getElementsByClassName("active");
+			current[0].className = current[0].className.replace(" active", "");
+			this.className += " active";
+		});
+	}
+</script>
+
+
+
+<!-- end products -->

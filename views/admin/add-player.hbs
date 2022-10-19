@@ -1,0 +1,88 @@
+<div class="main-panel">
+    <div class="content-wrapper">
+        <div class="container">
+
+            <div class="row w-50 mx-auto">
+
+                <form action="/admin/add-player" method="post" enctype="multipart/form-data" class="edit-form">
+
+                    <div class="col-12">
+                        <h2 class="tm-block-title d-inline-block">Add Player</h2>
+                    </div>
+
+                    <div class="form-group mt-5">
+                        <label for="category">Player Name</label>
+                        <input type="text" class="form-control mb-4" name="playerName" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter Name" required />
+
+                        <div class="form-group mt-5">
+                            <label for="category">DOB</label>
+                            <input type="date" class="form-control mb-4" name="dob" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="DOB" style="width: fit-content;" required />
+                            
+                            <label for="category">Gender</label>
+                            <select class="custom-select tm-select-accounts category" name="gender"
+                                placeholder="Enter style" style="width: fit-content;" required>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                            
+                            <div>
+                                <br>
+                                <label for="category">Batting Style</label>
+                                <select class="custom-select tm-select-accounts category" name="style"
+                                    placeholder="Enter style" required>
+                                    <option value="Right Hand">Right Hand</option>
+                                    <option value="Left Hand">Left Hand</option>
+                                </select>
+                            </div>
+                            <br>
+                            <label for="category">Bowling Style</label>
+                            <select class="custom-select tm-select-accounts category" name="bowlstyle"
+                                placeholder="Enter style" required>
+                                <option value="Right Arm Fast">Right Arm Fast</option>
+                                <option value="Right Arm Medium">Right Arm Medium</option>
+                                <option value="Left Arm Fast">Left Arm Fast</option>
+                                <option value="Left Arm Medium">Left Arm Medium</option>
+                                <option value="Right Arm Off break">Right Arm Off break</option>
+                                <option value="Right Arm Leg Spin">Right Arm Leg Spin</option>
+                                <option value="Right Arm Orthodox">Right Arm Orthodox</option>
+                                <option value="Left Arm Off spin">Left Arm Off spin</option>
+                                <option value="Left Arm Chinaman">Left Arm Chinaman</option>
+                                <option value="Right Arm Orthodox">Right Arm Orthodox</option>
+                                <option value="Other">Other</option>
+                                <option value="Not Bowling">No bowling</option>
+                            </select>
+
+
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" name="wk"
+                                    value=" 🧤">
+                                <label class="form-check-label " for="flexSwitchCheckChecked">Wicket Keeper</label>
+                            </div>
+
+                        </div>
+
+
+                        <img src="" alt="" id="imgView" style="width: 250px; height: 250px;;" />
+
+                        <div class="custom-file mt-3 mb-3 col-sm-8">
+                            <input id="fileInput" type="file" style="display:none;" name="files"
+                                onchange="viewImage(event)" />
+                            <input type="button" class="btn btn-primary btn-block mx-auto" value="UPLOAD  IMAGE"
+                                onclick="document.getElementById('fileInput').click();" />
+
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100 mt-4">Add Player</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function viewImage(event) {
+        document.getElementById('imgView').src = URL.createObjectURL(event.target.files[0])
+    }
+</script>
