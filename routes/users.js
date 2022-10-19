@@ -266,7 +266,7 @@ router.get('/cart', verifyLogin, async (req, res) => {
   }
 
 })
-
+ //qwerty
 
 
 router.get('/single-product/:id', async function (req, res) {
