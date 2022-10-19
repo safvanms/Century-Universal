@@ -253,20 +253,17 @@ router.get('/news', (req, res) => {
 
 
 router.get('/cart', verifyLogin, async (req, res) => {
-  let user = req.session.user;
-  if (req.session.user) {
-    let count = await userHelpers.getCartCount(req.session.user._id)
-    let products = await userHelpers.getCartProducts(req.session.user._id)
-    let totalValue = await userHelpers.getTotalAmount(req.session.user._id)
-    if(count){
+  const user = req.session.user;
+  const cartCount = await userHelpers.getCartCount(req.session.user._id)
+  const products = await userHelpers.getCartProducts(req.session.user._id)
+  let totalValue = await userHelpers.getTotalAmount(req.session.user._id)
+  if (cartCount) {
     res.render('shop/cart', { layout: 'users-shop-layout-2', shop: true, user, products, totalValue, ftotal: totalValue + 100 })
-    }else{
-      res.render('shop/no-cart', { layout: 'users-shop-layout-2', shop: true, user})
-    }
+  } else {
+    res.render('shop/no-cart', { layout: 'login-layout', shop: true, user })
   }
 
 })
- //qwerty
 
 
 router.get('/single-product/:id', async function (req, res) {
@@ -313,40 +310,40 @@ router.post('/buy', async (req, res) => {
   let products = await userHelpers.getCartProductList(req.body.userId)
   totalPrice = await userHelpers.getTotalAmount(req.body.userId)
   userHelpers.placeOrder(req.body, products, totalPrice + 100).then((response) => {
-    res.json({status:true})
+    res.json({ status: true })
 
   })
 
 })
 
-router.get("/success", verifyLogin , (req, res) => {
+router.get("/success", verifyLogin, (req, res) => {
   let user = req.session.user;
   if (req.session.user) {
-  res.render("shop/success", { layout: 'users-shop-layout-2', shop: true,user});
+    res.render("shop/success", { layout: 'users-shop-layout-2', shop: true, user });
   }
 });
 
-router.get("/order-list",verifyLogin,async (req, res) => {
+router.get("/order-list", verifyLogin, async (req, res) => {
   let user = req.session.user;
   if (req.session.user) {
     let orders = await userHelpers.getUserOrders(req.session.user._id)
-    res.render('shop/order-list', { layout: 'users-shop-layout-2', shop: true, user,orders})
+    res.render('shop/order-list', { layout: 'users-shop-layout-2', shop: true, user, orders })
   }
 });
 
-router.get("/view-order-products/:id", verifyLogin, async(req,res)=>{
+router.get("/view-order-products/:id", verifyLogin, async (req, res) => {
   let user = req.session.user;
   if (req.session.user) {
-  let products = await userHelpers.getOrderProducts(req.params.id)
-  res.render("shop/view-order-products", { layout: 'users-shop-layout-2', shop: true, user,products})
+    let products = await userHelpers.getOrderProducts(req.params.id)
+    res.render("shop/view-order-products", { layout: 'users-shop-layout-2', shop: true, user, products })
   }
 })
 
 
-router.get("/user", verifyLogin , (req, res) => {
+router.get("/user", verifyLogin, (req, res) => {
   let user = req.session.user;
   if (req.session.user) {
-  res.render("shop/user", { layout: 'login-layout', shop: true,user});
+    res.render("shop/user", { layout: 'login-layout', shop: true, user });
   }
 });
 
