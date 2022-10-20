@@ -72,16 +72,16 @@
 
 				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
 					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
-						<div class=""
-							style=" padding-left: 15px; padding-top: 15px; padding-bottom: 15px; padding-top: 20px; margin-bottom: 20px;">
+						<div class="text-uppercase"
+							style=" padding-left: 15px; padding-top: 15px; padding-bottom: 15px; padding-top: 20px; margin-bottom: 20px; border-style:groove">
 							<h4 class="mtext-109 cl2 p-b-30">
 								Cart Total
 							</h4>
 							<div class="flex-w flex-t p-t-27 p-b-33">
 								<div class="size-208">
 									<span class="mtext-101 cl2">
-										Total: &nbsp; <span id="ftotal" class="mtext-110 cl2"
-											style="font-size: 25px; font-weight:900; color: rgb(7, 98, 21); ">
+										Total: &nbsp; <span id="ftotal" class="mtext-110 cl2 text-success"
+											style="font-size: 25px; font-weight:900;  ">
 											₹{{ftotal}}.00/- <span>
 												<p style="font-size: 12px; ">(Inclusive of all taxes)</p>
 											</span>
@@ -92,7 +92,8 @@
 							</div>
 						</div>
 
-						<div class="" style=" padding-left: 15px; padding-top: 15px; padding-bottom: 15px ; ">
+						<div class="text-uppercase"
+							style=" padding-left: 15px; padding-top: 15px; padding-bottom: 15px ; border-style: groove;">
 							<h4 class="mtext-109 cl2 p-b-30">
 								Payment Option
 							</h4>
@@ -113,9 +114,9 @@
 								</label>
 							</div>
 
-							<button href="/buy" type="submit" id="submitId"  class="btn btn-warning"
-								style=" border-radius: 15px; border-style: none; height: 40px;  width: 100px; margin-top: 20px;">
-								BUY
+							<button href="/buy" type="submit" id="submitId" class="btn btn-success"
+								style=" border-radius: 10px; border-style: none; height: 40px;  width: fit-content; margin-top: 20px;">
+								PROCEED TO CHECKOUT
 							</button>
 						</div>
 
@@ -126,6 +127,11 @@
 	</form>
 
 </div>
+	<div class="text-center">
+
+		<a class="btn btn-warning" href="/">Home</a>
+
+	</div>
 
 <script>
 	$("#checkout-form").submit((e) => {
@@ -135,10 +141,62 @@
 			method: 'post',
 			data: $('#checkout-form').serialize(),
 			success: (response) => {
-				if (response.status) {
-					location.href ='/success'
+				if (response.codSuccess) {
+					location.href = '/success'
+				} else {
+					razorpayPayment(response)
 				}
 			}
 		})
 	})
+
+	function razorpayPayment(order) {
+		let options = {
+			"key": "rzp_test_FWc2ABiabPmd8e", // Enter the Key ID generated from the Dashboard
+			"amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+			"currency": "INR",
+			"name": "Century Universal",
+			"description": "Test Transaction",
+			"image": "/users/img/mypics/cuccLogo.jpg.png",
+			"order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+			"handler": function (response) {
+				verifyPayment(response, order)
+			},
+			"prefill": {
+				"name": "Gaurav Kumar",
+				"email": "gaurav.kumar@example.com",
+				"contact": "9999999999"
+			},
+			"notes": {
+				"address": "Razorpay Corporate Office"
+			},
+			"theme": {
+				"color": "#2b3745"
+			}
+		};
+
+		let rzp1 = new Razorpay(options);
+		rzp1.open();
+	}
+
+	function verifyPayment(payment, order) {
+		$.ajax({
+			url: '/verify-payment',
+			data: {
+				payment,
+				order
+			},
+			method: 'post',
+			success: (response) => {
+				if (response.status) {
+					location.href = '/success'
+				} else {
+					alert(swal("Sorry !", "Payment is failed!", "warning"))
+				}
+
+			},
+		})
+
+	}
+
 </script>

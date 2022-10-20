@@ -410,7 +410,7 @@
 	.sticky-wrapper.is-sticky .top-header-area {
 	    position: absolute!important;
 	    background-color: transparent;
-	    padding: 25px 0;
+	    padding: 29px 0;
 	}
 	.featured-box {
 	    padding: 0 45px;
@@ -429,6 +429,7 @@
 	.site-logo {
     position: absolute;
 	    z-index: 99;
+		margin-top: -5px;
 	}
 
 	.mean-container .mean-bar {

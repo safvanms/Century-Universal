@@ -115,9 +115,9 @@ router.get("/logout", (req, res) => {
 router.get('/shopping', (req, res) => {
   let user = req.session.user;
   if (req.session.user) {
-    res.render('shop/index', { layout: 'users-shop-layout-2', shop: true, user })
+    res.render('shop/index', { layout: 'users-shop-layout', shop: true, user })
   }
-  res.render('shop/index', { layout: 'users-shop-layout-2', shop: true })
+  res.render('shop/index', { layout: 'users-shop-layout', shop: true })
 })
 
 
@@ -310,8 +310,13 @@ router.post('/buy', async (req, res) => {
   let products = await userHelpers.getCartProductList(req.body.userId)
   totalPrice = await userHelpers.getTotalAmount(req.body.userId)
   userHelpers.placeOrder(req.body, products, totalPrice + 100).then((response) => {
-    res.json({ status: true })
-
+    if (req.body['paymentMethod'] === 'COD') {
+      res.json({ codSuccess: true })
+    } else {
+      userHelpers.generateRazorpay(response, totalPrice).then((response) => {
+        res.json(response)
+      })
+    }
   })
 
 })
@@ -346,5 +351,18 @@ router.get("/user", verifyLogin, (req, res) => {
     res.render("shop/user", { layout: 'login-layout', shop: true, user });
   }
 });
+  
+router.post('/verify-payment', (req, res) => {
+  userHelpers.verifyPayment(req.body).then(() => {
+    userHelpers.changePaymentStatus(req.body['order[receipt]']).then(() => {  
+      res.json({ status: true })
+    })
+  }).catch((err) => {
+    console.log(err);
+    req.json({ status: false })
+    console.log("payment moonji");
+  })
+})
+
 
 module.exports = router;
