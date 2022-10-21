@@ -330,11 +330,12 @@ router.get("/success", verifyLogin, (req, res) => {
 
 router.get("/order-list", verifyLogin, async (req, res) => {
   let user = req.session.user;
-  if (req.session.user) {
     let orders = await userHelpers.getUserOrders(req.session.user._id)
-    res.render('shop/order-list', { layout: 'users-shop-layout-2', shop: true, user, orders })
-  }
+      res.render('shop/order-list', { layout: 'users-shop-layout-2', shop: true, user, orders })
+    
 });
+
+
 
 router.get("/view-order-products/:id", verifyLogin, async (req, res) => {
   let user = req.session.user;
@@ -351,10 +352,10 @@ router.get("/user", verifyLogin, (req, res) => {
     res.render("shop/user", { layout: 'login-layout', shop: true, user });
   }
 });
-  
+
 router.post('/verify-payment', (req, res) => {
   userHelpers.verifyPayment(req.body).then(() => {
-    userHelpers.changePaymentStatus(req.body['order[receipt]']).then(() => {  
+    userHelpers.changePaymentStatus(req.body['order[receipt]']).then(() => {
       res.json({ status: true })
     })
   }).catch((err) => {

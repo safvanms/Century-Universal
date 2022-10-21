@@ -49,7 +49,7 @@ const verifylogin = (req, res, next) => {
 
 router.get('/products', verifylogin, function (req, res) {
   productHelpers.getAllproducts().then((products) => {
-    res.render('admin/products', { layout: 'admin-layout',products })
+    res.render('admin/products', { layout: 'admin-layout', products })
   })
 
 
@@ -57,8 +57,8 @@ router.get('/products', verifylogin, function (req, res) {
 
 
 router.get('/add-products', verifylogin, function (req, res) {
-  productHelpers.getAllCategory().then((categories)=>{ 
-    res.render('admin/add-products', { layout: 'admin-layout' , categories})
+  productHelpers.getAllCategory().then((categories) => {
+    res.render('admin/add-products', { layout: 'admin-layout', categories })
   })
 
 });
@@ -66,7 +66,7 @@ router.get('/add-products', verifylogin, function (req, res) {
 
 router.post('/add-products', upload.array("files", 3), function (req, res) {
   console.log(req.body);
-  productHelpers.addProduct(req.body,req.files).then(() => {
+  productHelpers.addProduct(req.body, req.files).then(() => {
     res.redirect('/admin/products')
 
   })
@@ -75,21 +75,21 @@ router.post('/add-products', upload.array("files", 3), function (req, res) {
 
 
 router.get('/edit-products/:id', verifylogin, async function (req, res) {
-  let products = await productHelpers.getProductsDetails(req.params.id ).then((products) => {
-    productHelpers.getAllCategory().then((categories)=>{
-       res.render('admin/edit-product', { layout: 'admin-layout', admin: true, products,categories })
+  let products = await productHelpers.getProductsDetails(req.params.id).then((products) => {
+    productHelpers.getAllCategory().then((categories) => {
+      res.render('admin/edit-product', { layout: 'admin-layout', admin: true, products, categories })
     })
   })
 })
 
 
-router.post('/edit-products/:id', upload.single('files'), function (req, res, next) {
-  let id =req.params.id;
-  productHelpers.updateProducts( req.body , id , req.files)
-    .then(() => { 
+router.post('/edit-products/:id', upload.array('files', 3), function (req, res, next) {
+  let id = req.params.id;
+  productHelpers.updateProducts(req.body, id, req.files)
+    .then(() => {
       res.redirect("/admin/products");
     });
-  
+
 })
 
 
@@ -115,11 +115,11 @@ router.get('/category', verifylogin, function (req, res) {
 
 
 router.get('/add-category', verifylogin, function (req, res) {
-  productHelpers.getCategory().then((category)=>{
-     res.render('admin/add-category', { layout: 'admin-layout', admin: true })
-})
+  productHelpers.getCategory().then((category) => {
+    res.render('admin/add-category', { layout: 'admin-layout', admin: true })
   })
- 
+})
+
 
 router.post('/add-category', upload.single('files'), function (req, res, next) {
   productHelpers.addCategory(req.body, req.file).then(() => {
@@ -132,7 +132,7 @@ router.post('/add-category', upload.single('files'), function (req, res, next) {
 router.get('/delete-category/:id', function (req, res, next) {
   const catId = req.params.id;
   productHelpers.deleteCategory(catId).then(() => {
-    res.redirect("/admin/category"); 
+    res.redirect("/admin/category");
   });
 })
 
@@ -147,8 +147,8 @@ router.get('/edit-category/:id', verifylogin, async function (req, res) {
 
 
 router.post('/edit-category/:id', upload.single('files'), function (req, res, next) {
-  let id = req.params.id 
-  productHelpers.updateCategory(req.body , id ,  req.file)
+  let id = req.params.id
+  productHelpers.updateCategory(req.body, id, req.file)
     .then(() => {
       console.log(req.params.id);
       res.redirect("/admin/category");
@@ -157,7 +157,31 @@ router.post('/edit-category/:id', upload.single('files'), function (req, res, ne
 })
 
 
+// router.get("/orders", async (req, res) => {
 
+//      res.render('admin/orders', { layout: 'admin-layout', admin: true})
+//   })
+
+
+
+router.get("/orders", async (req, res) => {
+  const orders = await productHelpers.getUserOrders()
+
+  res.render('admin/orders', { layout: 'admin-layout', admin: true, orders })
+
+});
+
+
+router.get('/accept/:id',verifylogin, (req, res) => {
+  productHelpers.acceptOrders(req.params.id).then()
+  res.redirect('/admin/orders')
+})
+
+
+router.get('/decline/:id',verifylogin, (req, res) => {
+  productHelpers.declineOrders(req.params.id).then()
+  res.redirect('/admin/orders')
+})
 
 
 
@@ -213,10 +237,10 @@ router.get('/logout', (req, res) => {
 
 
 router.get('/umpires', verifylogin, function (req, res) {
-  productHelpers.getAllUmpires().then((umpires)=>{
-     res.render('admin/umpires', { layout: 'admin-layout', admin: true, umpires})
+  productHelpers.getAllUmpires().then((umpires) => {
+    res.render('admin/umpires', { layout: 'admin-layout', admin: true, umpires })
   })
- 
+
 });
 
 router.get('/add-umpires', verifylogin, function (req, res) {
@@ -227,7 +251,7 @@ router.get('/add-umpires', verifylogin, function (req, res) {
 
 router.post('/add-umpire', upload.array("files", 1), function (req, res) {
   console.log(req.body);
-  productHelpers.addUmpire(req.body,req.files).then(() => {
+  productHelpers.addUmpire(req.body, req.files).then(() => {
     res.redirect('/admin/umpires')
 
   })
@@ -242,14 +266,14 @@ router.get('/delete-umpire/:id', function (req, res, next) {
 })
 
 
-  // Officials session //
+// Officials session //
 
 
 router.get('/officials', verifylogin, function (req, res) {
-  productHelpers.getAllOfficials().then((officials)=>{
-     res.render('admin/officials', { layout: 'admin-layout', admin: true, officials })
+  productHelpers.getAllOfficials().then((officials) => {
+    res.render('admin/officials', { layout: 'admin-layout', admin: true, officials })
   })
- 
+
 });
 
 
@@ -260,7 +284,7 @@ router.get('/add-officials', verifylogin, function (req, res) {
 
 router.post('/add-officials', upload.array("files", 1), function (req, res) {
   console.log(req.body);
-  productHelpers.addOfficial(req.body , req.files).then(() => {
+  productHelpers.addOfficial(req.body, req.files).then(() => {
     res.redirect('/admin/officials')
 
   })
@@ -280,10 +304,10 @@ router.get('/delete-official/:id', function (req, res, next) {
 
 
 router.get('/players', verifylogin, function (req, res) {
-  productHelpers.getAllPlayers().then((players)=>{
-     res.render('admin/players', { layout: 'admin-layout', admin: true, players })
+  productHelpers.getAllPlayers().then((players) => {
+    res.render('admin/players', { layout: 'admin-layout', admin: true, players })
   })
- 
+
 });
 
 
@@ -294,7 +318,7 @@ router.get('/add-player', verifylogin, function (req, res) {
 
 router.post('/add-player', upload.array("files", 1), function (req, res) {
   console.log(req.body);
-  productHelpers.addPlayer(req.body , req.files).then(() => {
+  productHelpers.addPlayer(req.body, req.files).then(() => {
     res.redirect('/admin/players')
 
   })
@@ -302,7 +326,7 @@ router.post('/add-player', upload.array("files", 1), function (req, res) {
 
 router.post('/addbyplayer', upload.array("files", 1), function (req, res) {
   console.log(req.body);
-  productHelpers.addPlayer(req.body , req.files).then(() => {
+  productHelpers.addPlayer(req.body, req.files).then(() => {
     res.render('users/home', { layout: 'users-home-layout', home: true })
 
   })
@@ -321,11 +345,11 @@ router.get('/delete-player/:id', function (req, res, next) {
 
 
 router.get('/news', verifylogin, function (req, res) {
-  productHelpers.getNews().then((news)=>{
-     res.render('admin/news', { layout: 'admin-layout', news})
+  productHelpers.getNews().then((news) => {
+    res.render('admin/news', { layout: 'admin-layout', news })
 
   })
-   
+
 });
 
 router.get('/add-news', verifylogin, function (req, res) {
@@ -335,8 +359,7 @@ router.get('/add-news', verifylogin, function (req, res) {
 
 
 router.post('/add-news', upload.array("files", 1), function (req, res) {
-  console.log(req.body);
-  productHelpers.addNews(req.body ).then(() => {
+  productHelpers.addNews(req.body).then(() => {
     res.redirect('/admin/news')
 
   })

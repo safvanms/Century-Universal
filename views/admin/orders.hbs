@@ -1,0 +1,56 @@
+<div class='main-panel '>
+    <div class='content-wrapper '>
+        <div class="row">
+        </div>
+
+        <div class='row mt-3'>
+            <div class='col-12 grid-margin'>
+
+                <div class='card'>
+                    <div class='card-body'>
+                        <h4 class='card-title'>Orders List</h4>
+                        <div class='table-responsive'>
+                            <table class='table'>
+                                <thead>
+                                    <tr>
+                                        <th>OrderID &amp; Date</th>
+                                        <th>Address</th>
+                                        <th>Amount</th>
+                                        <th>Payment</th>
+                                        <th>Order status</th>
+                                        <th>Details</th>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {{#each orders}}
+                                    <tr>
+
+                                        <td class="text-uppercase">ID :{{this._id}}
+                                            <br>
+                                            Date:{{this.date}}
+                                        </td>
+                                        <td>{{this.deliveryDetails.name}} <br> {{this.deliveryDetails.address}}<br>
+                                            Pin : {{this.deliveryDetails.pincode}}
+                                            <br>
+                                            Phone : {{this.deliveryDetails.mobile}}
+                                        </td>
+
+                                        <td>₹ {{this.deliveryDetails.totalAmount}} /-</td>
+                                        <td>{{this.paymentMethod}}</td>
+                                        <td>{{this.status}}</td>
+
+
+                                        <td>
+
+
+                                            <a class='btn btn-outline-success'
+                                                href="/admin/accept/{{this._id}}">Accept</a>
+
+                                            <a class='btn btn-outline-danger' href="/admin/decline/{{this._id}}"
+                                                onclick="return confirm('Are you want to delete ?')">Decline</a>
+                                        </td>
+
+
+                                        {{/each}}

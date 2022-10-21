@@ -135,6 +135,7 @@ module.exports = {
         })
     },
 
+    
 
 
     changeProductQuantity: (details) => {

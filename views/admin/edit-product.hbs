@@ -13,7 +13,7 @@
 
                         <div class="row tm-edit-product-row">
 
-                            <form action="/admin/edit-products/{{products._id}}" enctype="multipart/form-data"
+                            <form id="editProduct" action="/admin/edit-products/{{products._id}}" enctype="multipart/form-data"
                                 method="post" class="tm-edit-product-form d-flex">
 
 
@@ -39,9 +39,9 @@
                                     <div class="form-group mb-3">
                                         <label for="">Type</label>
                                         <select class="custom-select tm-select-accounts category" name="type" id="type"
-                                            onchange="changeCategories();" required>
-                                            <option value="{{products.type}}">RH</option>
-                                            <option value="{{products.type}}">LH</option>
+                                            onchange="changeCategories()">
+                                            <option value="RIGHT HAND">RH</option>
+                                            <option value="LEFT HAND">LH</option>
                                             <option value="">None</option>
 
                                         </select>
@@ -52,7 +52,7 @@
                                         <select class="custom-select tm-select-accounts type" name="category"
                                             id="category">
                                             {{#each categories}}
-                                            <option {{products.categoryName}}">{{products.categoryName}}</option>
+                                            <option value="{{this.categoryName}}">{{this.categoryName}}</option>
                                             {{/each}}
                                         </select>
 
@@ -61,7 +61,7 @@
                                     <div class="form-group mb-3">
                                         <label for="description">Description</label>
                                         <textarea class="form-control validate" name="description"
-                                            rows="5" >{{products.description}}  </textarea>
+                                            rows="5">{{products.description}}  </textarea>
                                     </div>
                                     <label for="stock">Price
                                     </label>
@@ -96,7 +96,7 @@
                                             <img class="p-2" src="/upload/{{products.images.[0].filename}}"
                                                 alt="product preview" id="imgView1"
                                                 style="width: 150px; height: 150px;">
-
+ 
                                             <img class="p-2" src="/upload/{{products.images.[1].filename}}"
                                                 alt="product preview" id="imgView2"
                                                 style="width: 150px; height: 150px;">
@@ -108,19 +108,22 @@
 
                                         <div class="custom-file mt-3 mb-3 col-sm-6 d-flex">
                                             <input id="fileInput1" type="file" style="display:none;" name="files"
-                                                onchange="imageView1(event)" required />
+                                                onchange="imageView1(event)" />
+
 
                                             <input type="button" class="btn btn-primary btn-block mx-auto"
                                                 value="UPLOAD IMAGE 1"
                                                 onclick="document.getElementById('fileInput1').click();" />
                                             <input id="fileInput2" type="file" style="display:none;" name="files"
-                                                onchange="imageView2(event)" required />
+                                                onchange="imageView2(event)" />
+
 
                                             <input type="button" class="btn btn-warning btn-block mx-auto"
                                                 value="UPLOAD IMAGE 2"
                                                 onclick="document.getElementById('fileInput2').click();" />
                                             <input id="fileInput3" type="file" style="display:none;" name="files"
-                                                onchange="imageView3(event)" required />
+                                                onchange="imageView3(event)" />
+
 
                                             <input type="button" class="btn btn-danger btn-block mx-auto"
                                                 value="UPLOAD IMAGE 3"
@@ -170,4 +173,7 @@
     function imageView3(event) {
         document.getElementById('imgView3').src = URL.createObjectURL(event.target.files[0])
     }
+
 </script>
+
+

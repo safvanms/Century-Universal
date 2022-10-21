@@ -19,7 +19,7 @@
 								<thead>
 									<tr>
 
-										<th> No. </th>
+										<th>  </th>
 										<th> Product Name </th>
 										<th> Brand </th>
 										<th> Type </th>
@@ -32,8 +32,9 @@
 								<tbody>
 									{{#each products}}
 									<tr>
-										<td> 1 </td>
-										<td> {{this.productName}} </td>
+										<td> * </td>
+										<td style="max-width: 250px;
+word-wrap: break-word; overflow: auto;"> {{this.productName}} </td>
 										<td> {{this.brand}} </td>
 										<td> {{this.type}} </td>
 										<td> {{this.category}} </td>

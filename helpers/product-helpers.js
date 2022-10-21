@@ -59,12 +59,12 @@ module.exports = {
 
 
 	updateProducts: (product, proId, images) => {
+
 		images.forEach((image) => {
 			image._id = new ObjectId();
 		});
 
 		const { brand, productName, type, category, price, description, stock } = product;
-
 		const productObject = {
 			brand,
 			productName,
@@ -75,6 +75,7 @@ module.exports = {
 			stock,
 			images,
 		};
+
 
 		return new Promise((resolve, reject) => {
 			db.get()
@@ -135,6 +136,34 @@ module.exports = {
 	},
 
 
+	getUserOrders: () => {
+		return new Promise((resolve, reject) => {
+			let orders = db.get().collection(collection.ORDER_COLLECTION).find().toArray()
+			resolve(orders)
+			console.log(orders)
+		})
+	},
+
+    acceptOrders:(orderId)=>{
+		return new Promise(async(resolve,reject)=>{
+			await db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:ObjectId(orderId)},{$set:{status:"Shipped"}}).then((response)=>{
+				resolve(response)
+				console.log(response);
+			})
+	
+		})
+	},
+
+
+	declineOrders:(orderId)=>{
+		return new Promise(async(resolve,reject)=>{
+			await db.get().collection(collection.ORDER_COLLECTION).updateOne({_id:ObjectId(orderId)},{$set:{status:"Cancelled"}}).then((response)=>{
+				resolve(response)
+				console.log(response);
+			})
+	
+		})
+	},
 
 
 
@@ -234,7 +263,7 @@ module.exports = {
 			}
 		})
 	},
-	
+
 
 	deleteCategory: (catId) => {
 		return new Promise((resolve, reject) => {
