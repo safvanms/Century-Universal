@@ -115,9 +115,9 @@ router.get("/logout", (req, res) => {
 router.get('/shopping', (req, res) => {
   let user = req.session.user;
   if (req.session.user) {
-    res.render('shop/index', { layout: 'users-shop-layout', shop: true, user })
+    res.render('shop/index', { layout: 'users-shop-layout-3', shop: true, user })
   }
-  res.render('shop/index', { layout: 'users-shop-layout', shop: true })
+  res.render('shop/index', { layout: 'users-shop-layout-3', shop: true })
 })
 
 
