@@ -157,13 +157,6 @@ router.post('/edit-category/:id', upload.single('files'), function (req, res, ne
 })
 
 
-// router.get("/orders", async (req, res) => {
-
-//      res.render('admin/orders', { layout: 'admin-layout', admin: true})
-//   })
-
-
-
 router.get("/orders", async (req, res) => {
   const orders = await productHelpers.getUserOrders().then()
   res.render('admin/orders', { layout: 'admin-layout', admin: true, orders })
