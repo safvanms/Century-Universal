@@ -1,10 +1,10 @@
-<a class=""  onclick="history.back()"><i class="fa fa-remove"
-            style="font-size:24px; float: right; padding-top: 30px; padding-right: 30px; color: white;"></i></a>
+<a class="" onclick="history.back()"><i class="fa fa-remove"
+    style="font-size:24px; float: right; padding-top: 30px; padding-right: 30px; color: white;"></i></a>
 <div class="playersform" style="background-image: linear-gradient(to bottom right,#2b3745,#ba9c5c); ">
   <div class="container " style="margin-top:80px ;color: white; ">
 
     <div class="wrap">
-      <form action="/admin/addbyplayer" method="post" enctype="multipart/form-data">
+      <form action="/admin/addbyplayer" method="post" enctype="multipart/form-data" id="player">
 
 
 
@@ -22,9 +22,9 @@
             name="playerName" placeholder="Enter your Name " required>{{#each this.playerName}}{{/each}}
         </div>
 
-        <input type="date"  class="form-control "
+        <input type="date" class="form-control "
           style="border-radius: 20px; background-color: transparent; color:black ; width: fit-content;" id="name"
-          aria-describedby="name" name="dob"  placeholder="Date of Birth" required>
+          aria-describedby="name" name="dob" placeholder="Date of Birth" required>
         <br>
 
 
@@ -57,7 +57,7 @@
         </div>
         <hr>
 
-        
+
         <div class="form-check form-switch">
           <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked">
           <label class="form-check-label " for="flexSwitchCheckChecked">All rounder</label>
@@ -111,7 +111,7 @@
 
         <!-- Trigger/Open The Modal -->
 
-        <button class="btn btn-success" type="submit" id="myBtn"
+        <button class="btn btn-success" type="submit" id="myBtn" onClick="return submitForm(document.longsubmit, this)"
           style="border-radius: 15px; float: right; margin-bottom: 30px;">SUBMIT</button>
 
 
@@ -171,8 +171,21 @@
   function viewImage(event) {
     document.getElementById('imgView').src = URL.createObjectURL(event.target.files[0])
   }
+</script>
+<script>
+  var submitDone = false;
 
+  function submitForm(myForm, button) {
 
-
-
+    if (!submitDone) {
+      submitDone = true;
+      button.value = 'Please Wait';
+      button.disabled = true;
+      myForm.submit();
+    }
+    else {
+      alert("Already submitted, please wait!");
+    }
+    return true;
+  }
 </script>

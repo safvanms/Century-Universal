@@ -211,6 +211,7 @@ router.get('/umpires', (req, res) => {
     if (req.session.user) {
       res.render('users/umpires', { layout: 'users-home-layout', home: true, umpires, user })
     }
+    res.render('users/umpires', { layout: 'users-home-layout', home: true, umpires })
   })
 
 })
@@ -224,6 +225,7 @@ router.get('/officials', (req, res) => {
     if (req.session.user) {
       res.render('users/officials', { layout: 'users-home-layout', home: true, officials, user })
     }
+    res.render('users/officials', { layout: 'users-home-layout', home: true, officials })
   })
 
 })
@@ -243,6 +245,7 @@ router.get('/news', (req, res) => {
     if (req.session.user) {
       res.render('users/news', { layout: 'users-home-layout', home: true, news, user })
     }
+    res.render('users/news', { layout: 'users-home-layout', home: true, news })
   })
 
 })
