@@ -164,12 +164,15 @@ router.get('/contact', (req, res) => {
 /* players users list */
 
 router.get('/players', (req, res) => {
-  productHelpers.getAllPlayers().then((players) => {
-    let user = req.session.user;
-    if (req.session.user) {
-      res.render('users/players', { layout: 'users-home-layout', home: true, players, user })
-    }
-  })
+    productHelpers.getAllPlayers().then((players) => {
+      let user = req.session.user;
+      if (req.session.user) {
+        res.render('users/players', { layout: 'users-home-layout', home: true, players, user })
+      }
+    })
+    .catch((error) => {
+      console.log(error);
+    });
 })
 
 
@@ -197,7 +200,6 @@ router.post('/add-player', function (req, res, next) {
   playerHelpers.addPlayer(req.body, req.file).then(() => {
     res.redirect("/users/players");
   });
-
 })
 
 
@@ -330,9 +332,9 @@ router.get("/success", verifyLogin, (req, res) => {
 
 router.get("/order-list", verifyLogin, async (req, res) => {
   let user = req.session.user;
-    let orders = await userHelpers.getUserOrders(req.session.user._id)
-      res.render('shop/order-list', { layout: 'users-shop-layout-2', shop: true, user, orders })
-    
+  let orders = await userHelpers.getUserOrders(req.session.user._id)
+  res.render('shop/order-list', { layout: 'users-shop-layout-2', shop: true, user, orders })
+
 });
 
 
