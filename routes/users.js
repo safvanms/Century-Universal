@@ -168,12 +168,11 @@ router.get('/players', (req, res) => {
       let user = req.session.user;
       if (req.session.user) {
         res.render('users/players', { layout: 'users-home-layout', home: true, players, user })
-      }
+      } 
+        res.render('users/players', { layout: 'users-home-layout', home: true, players })
+  
     })
-    .catch((error) => {
-      console.log(error);
-    });
-})
+  })
 
 
 

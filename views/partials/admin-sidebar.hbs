@@ -2,16 +2,17 @@
   <!-- partial:partials/_sidebar.html -->
   <nav class="sidebar sidebar-offcanvas" id="sidebar">
     <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
-      <a class="sidebar-brand brand-logo" href="#" style="color:white ;">CUCC ADMIN</a>
-      <a class="sidebar-brand brand-logo-mini" href="#"><img src="/users/img/mypics/cuccLogo.jpg.png" width="60px" height="60px"
-          alt="logo" /></a>
+      <a class="sidebar-brand brand-logo" href="/admin" style="color:white ;">CUCC ADMIN</a>
+      <a class="sidebar-brand brand-logo-mini" href="/admin"><img src="/users/img/mypics/cuccLogo.jpg.png" width="60px"
+          height="60px" alt="logo" /></a>
     </div>
     <ul class="nav">
       <li class="nav-item profile">
         <div class="profile-desc">
           <div class="profile-pic">
             <div class="count-indicator">
-              <img class="img-xs rounded-circle "src="/users/img/mypics/cuccLogo.jpg.png" width="60px" height="60px" alt="">
+              <img class="img-xs rounded-circle " src="/users/img/mypics/cuccLogo.jpg.png" width="60px" height="60px"
+                alt="">
               <span class="count bg-success"></span>
             </div>
             <div class="profile-name">
@@ -19,6 +20,7 @@
               <span>Admin page</span>
             </div>
           </div>
+
           <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>
           <div class="dropdown-menu dropdown-menu-right sidebar-dropdown preview-list"
             aria-labelledby="profile-dropdown">
@@ -61,8 +63,16 @@
         <span class="nav-link">Navigation</span>
       </li>
 
-
 <li class="nav-item menu-items">
+        <a class="nav-link" href="/admin">
+          <span class="menu-icon">
+            <i class="mdi mdi-speedometer"></i>
+          </span>
+          <span class="menu-title">Dashboard</span>
+        </a>
+      </li>
+
+      <li class="nav-item menu-items">
         <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
           <span class="menu-icon">
             <i class="mdi mdi-laptop"></i>
@@ -74,8 +84,8 @@
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="/admin/umpires">Umpires</a></li>
             <li class="nav-item"> <a class="nav-link" href="/admin/officials">Officials</a></li>
-             <li class="nav-item"> <a class="nav-link" href="/admin/players">Players</a></li>
-              <li class="nav-item"> <a class="nav-link" href="/admin/news">CUCC News</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/admin/players">Players</a></li>
+            <li class="nav-item"> <a class="nav-link" href="/admin/news">CUCC News</a></li>
           </ul>
         </div>
       </li>
@@ -90,7 +100,7 @@
           <span class="menu-title">Orders</span>
         </a>
       </li>
-    
+
 
       <li class="nav-item menu-items">
         <a class="nav-link" href="/admin/category">
@@ -115,7 +125,7 @@
 
 
       <li class="nav-item menu-items">
-        <a class="nav-link" href="pages/charts/chartjs.html">
+        <a class="nav-link" href="/admin">
           <span class="menu-icon">
             <i class="mdi mdi-chart-bar"></i>
           </span>
@@ -123,7 +133,7 @@
         </a>
       </li>
       <li class="nav-item menu-items">
-        <a class="nav-link" href="pages/icons/mdi.html">
+        <a class="nav-link" href="/admin">
           <span class="menu-icon">
             <i class="mdi mdi-contacts"></i>
           </span>
