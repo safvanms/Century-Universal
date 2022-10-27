@@ -4,36 +4,42 @@ const path = require("path")
 const productHelpers = require('../helpers/product-helpers')
 const adminHelpers = require('../helpers/admin-helpers')
 const multer = require('multer');
+const { storage } = require('../cloudinary');
 const { log } = require('console')
 const { CATEGORY_COLLECTION } = require('../config/collection');
-
+const userHelpers = require('../helpers/user-helpers');
+const upload = multer({ storage }); 
 /* GET home page. */
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    try {
-      cb(null, './public/upload')
-    }
-    catch (error) {
-      res.redirect("/admin/error-500")
-    }
-  },
 
-  filename: function (req, file, cb) {
-    try {
-      const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
-      cb(null,
-        file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname)
-      );
-    } catch (error) {
-      res.redirect("/admin/error-500");
 
-    }
 
-  }
-})
+// storage = multer.diskStorage({
+//   destination: function (req, file, cb) {
+//     try {
+//       cb(null, './public/upload')
+//     }
+//     catch (error) {
+//       res.redirect("/admin/error-500")
+//     }
+//   },
 
-const upload = multer({ storage: storage })
+//   filename: function (req, file, cb) {
+//     try {
+//       const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9)
+//       cb(null,
+//         file.fieldname + '-' + uniqueSuffix + path.extname(file.originalname)
+//       );
+//     } catch (error) {
+//       res.redirect("/admin/error-500");
+
+//     }
+
+//   }
+// })
+
+// const upload = multer({ storage: storage })
+
 const verifylogin = (req, res, next) => {
   if (req.session.loggedIn) {
     next();
@@ -44,7 +50,23 @@ const verifylogin = (req, res, next) => {
 
 
 
-/////// product session /////////
+
+router.get('/users', verifylogin, function (req, res) {
+  userHelpers.getAllUsers().then((users) => {
+    res.render('admin/users', { layout: 'admin-layout', admin: true, users })
+  })
+
+});
+
+
+router.get('/delete-user/:id', function (req, res, next) {
+  const userId = req.params.id;
+  userHelpers.deleteUser(userId).then(() => {
+    res.redirect("/admin/users");
+  });
+})
+
+/////// product section /////////
 
 
 router.get('/products', verifylogin, function (req, res) {
@@ -102,8 +124,29 @@ router.get('/delete-product/:id', function (req, res, next) {
   });
 })
 
+router.get("/orders", async (req, res) => {
+  const orders = await productHelpers.getUserOrders().then()
+  res.render('admin/orders', { layout: 'admin-layout', admin: true, orders })
 
-// category session //
+});
+
+
+router.get('/accept/:id', verifylogin, (req, res) => {
+  productHelpers.acceptOrders(req.params.id).then()
+  res.redirect('/admin/orders')
+})
+
+
+router.get('/decline/:id', verifylogin, (req, res) => {
+  productHelpers.declineOrders(req.params.id).then()
+  res.redirect('/admin/orders')
+})
+
+
+
+
+
+// category section //
 
 
 router.get('/category', verifylogin, function (req, res) {
@@ -157,23 +200,7 @@ router.post('/edit-category/:id', upload.single('files'), function (req, res, ne
 })
 
 
-router.get("/orders", async (req, res) => {
-  const orders = await productHelpers.getUserOrders().then()
-  res.render('admin/orders', { layout: 'admin-layout', admin: true, orders })
 
-});
-
-
-router.get('/accept/:id',verifylogin, (req, res) => {
-  productHelpers.acceptOrders(req.params.id).then()
-  res.redirect('/admin/orders')
-})
-
-
-router.get('/decline/:id',verifylogin, (req, res) => {
-  productHelpers.declineOrders(req.params.id).then()
-  res.redirect('/admin/orders')
-})
 
 
 
@@ -220,12 +247,12 @@ router.post('/admin-login', (req, res) => {
 
 router.get('/logout', (req, res) => {
   req.session.destroy();
-  res.redirect('/admin')
+  res.redirect('/')
 
 })
 
 
-// Umpire session //
+// Umpire section //
 
 
 router.get('/umpires', verifylogin, function (req, res) {
@@ -241,7 +268,7 @@ router.get('/add-umpires', verifylogin, function (req, res) {
 });
 
 
-router.post('/add-umpire', upload.array("files", 1), function (req, res) {
+router.post('/add-umpire', upload.array("files"), function (req, res) {
   console.log(req.body);
   productHelpers.addUmpire(req.body, req.files).then(() => {
     res.redirect('/admin/umpires')
@@ -258,7 +285,7 @@ router.get('/delete-umpire/:id', function (req, res, next) {
 })
 
 
-// Officials session //
+// Officials section //
 
 
 router.get('/officials', verifylogin, function (req, res) {
@@ -274,7 +301,7 @@ router.get('/add-officials', verifylogin, function (req, res) {
 
 });
 
-router.post('/add-officials', upload.array("files", 1), function (req, res) {
+router.post('/add-officials', upload.array("files"), function (req, res) {
   console.log(req.body);
   productHelpers.addOfficial(req.body, req.files).then(() => {
     res.redirect('/admin/officials')
@@ -292,7 +319,7 @@ router.get('/delete-official/:id', function (req, res, next) {
 
 
 
-// Player Session //
+// Player section //
 
 
 router.get('/players', verifylogin, function (req, res) {
@@ -308,7 +335,7 @@ router.get('/add-player', verifylogin, function (req, res) {
 
 });
 
-router.post('/add-player', upload.array("files", 1), function (req, res) {
+router.post('/add-player', upload.array("files"), function (req, res) {
   console.log(req.body);
   productHelpers.addPlayer(req.body, req.files).then(() => {
     res.redirect('/admin/players')
@@ -316,10 +343,10 @@ router.post('/add-player', upload.array("files", 1), function (req, res) {
   })
 })
 
-router.post('/addbyplayer', upload.array("files", 1), function (req, res) {
+router.post('/addbyplayer', upload.array("files"), function (req, res) {
   console.log(req.body);
   productHelpers.addPlayer(req.body, req.files).then(() => {
-    res.render('users/home', { layout: 'users-home-layout', home: true })
+    res.render('users/welldone', { layout: 'login-layout', home: true })
 
   })
 })
@@ -331,7 +358,7 @@ router.get('/delete-player/:id', function (req, res, next) {
   });
 })
 
-///// news session /////
+///// news section /////
 
 
 
@@ -350,7 +377,7 @@ router.get('/add-news', verifylogin, function (req, res) {
 });
 
 
-router.post('/add-news', upload.array("files", 1), function (req, res) {
+router.post('/add-news', function (req, res) {
   productHelpers.addNews(req.body).then(() => {
     res.redirect('/admin/news')
 

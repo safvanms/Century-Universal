@@ -2,8 +2,6 @@ const db = require("../config/connection")
 const collection = require("../config/collection");
 const { ObjectId } = require('mongodb')
 
-
-
 module.exports = {
 
 	addProduct: (product, images) => {
@@ -136,6 +134,8 @@ module.exports = {
 	},
 
 
+	//order section //
+
 	getUserOrders: () => {
 		return new Promise((resolve, reject) => {
 			let orders = db.get().collection(collection.ORDER_COLLECTION).find().toArray()
@@ -167,7 +167,7 @@ module.exports = {
 
 
 
-	///////////  Category Session /////////////
+	///////////  Category Section /////////////
 
 
 
@@ -286,7 +286,7 @@ module.exports = {
 
 
 
-	// Umpire Session //
+	// Umpire Section //
 
 	addUmpire: (umpire, images) => {
 		images.forEach((image) => {
@@ -337,7 +337,7 @@ module.exports = {
 
 
 
-	// official session //
+	// official section //
 
 	addOfficial: (officials, images) => {
 		images.forEach((image) => {
@@ -387,7 +387,7 @@ module.exports = {
 
 
 
-	// Player Session //
+	// Player Section //
 
 
 	addPlayer: (players, images) => {
@@ -451,7 +451,7 @@ module.exports = {
 	},
 
 
-	// news session //
+	// news section //
 
 	addNews: (News) => {
 

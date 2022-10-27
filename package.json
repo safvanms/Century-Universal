@@ -8,6 +8,7 @@
   "dependencies": {
     "ajax": "^0.0.4",
     "bcrypt": "^5.0.1",
+    "cloudinary": "^1.32.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
     "dotenv": "^16.0.2",
@@ -20,6 +21,7 @@
     "mongodb": "^4.7.0",
     "morgan": "~1.9.1",
     "multer": "^1.4.5-lts.1",
+    "multer-storage-cloudinary": "^4.0.0",
     "nocache": "^3.0.4",
     "nodemon": "^2.0.16",
     "razorpay": "^2.8.3",

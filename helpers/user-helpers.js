@@ -10,6 +10,9 @@ var instance = new Razorpay({
     key_secret: 'Jr57a3TbQ3CVqWw9BHR982jo',
 });
 
+
+
+
 module.exports = {
     doUserSignup: (userData) => {
         return new Promise((resolve, reject) => {
@@ -51,6 +54,34 @@ module.exports = {
         })
     },
 
+//user section //
+
+    getAllUsers: () => {
+        return new Promise(async (resolve, reject) => {
+            let users = await db.get().collection(collection.USER_COLLECTION).find().toArray()
+            resolve(users)
+        })
+    },
+
+    deleteUser: (userId) => {
+		return new Promise((resolve, reject) => {
+			try {
+				db.get()
+					.collection(collection.USER_COLLECTION)
+					.deleteOne({ _id: ObjectId(userId) })
+					.then((response) => {
+						resolve(response);
+					});
+			}
+			catch (error) {
+				console.log(error);
+				reject(error)
+			}
+		});
+	},
+
+
+//cart section //
 
     addToCart: (proId, userId) => {
         let proObj = {

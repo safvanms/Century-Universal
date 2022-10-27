@@ -1,0 +1,42 @@
+<div class='main-panel '>
+    <div class='content-wrapper '>
+        <div class="row">
+            <a class="btn btn-success ml-auto mr-5 font-weight-bold" href="/admin/add-umpires">+Add Umpires</a>
+        </div>
+
+        <div class='row mt-3'>
+            <div class='col-12 grid-margin'>
+
+                <div class='card'>
+                    <div class='card-body'>
+                        <h4 class='card-title'>Umpires of CUCC</h4>
+                        <div class='table-responsive'>
+                            <table class='table'>
+                                <thead>
+                                    <tr>
+                                        <th>First Name </th>
+                                        <th>Last Name </th>
+                                        <th>Moile</th>
+                                        <th>Password</th>
+
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    {{#each users}}
+                                    <tr>
+
+                                        <td> {{this.fname}} </td>
+                                        <td>{{this.lname}}</td>
+                                        <td>{{this.number}}</td>
+                                        <td>{{this.password}}</td>
+
+
+                                        <td>
+
+                                            <a class='btn btn-outline-danger' href="/admin/delete-user/{{this._id}}"
+                                                onclick="return confirm('Are you want to delete ?')">delete</a>
+                                        </td>
+
+
+                                        {{/each}}
