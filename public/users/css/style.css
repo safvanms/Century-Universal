@@ -172,7 +172,7 @@ Theme Name: cucc
     max-width: 55px;
     width: 50%;
     font-size: 5px;
-    background-color: rgb(13, 13, 114);
+    background-color: #4f65f1;
     padding: 2px;
     padding: 2px;
     border-radius: 50px;
@@ -364,6 +364,7 @@ Theme Name: cucc
   height: 40px;
 }
 
+
 @media (min-width: 300px) and (max-width: 525px) {
   .fixedButton {
     position: fixed;
@@ -418,6 +419,27 @@ Theme Name: cucc
     text-align: center;
     cursor: pointer;
   }
+}
+
+@media (min-width: 526px) {
+  .fixedButton {
+ display: none;
+  }
+  .roundedFixedBtn {
+    display: none;
+  }
+  .fixedButton1 {
+    display: none;
+     }
+     .roundedFixedBtn1 {
+       display: none;
+     }
+     .fixedButton2 {
+      display: none;
+       }
+       .roundedFixedBtn2 {
+         display: none;
+       }
 }
 
 .formnum {
