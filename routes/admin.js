@@ -245,9 +245,9 @@ router.post('/admin-login', (req, res) => {
     });
 });
 
-router.get('/logout', (req, res) => {
+router.get('/adminlogout', (req, res) => {
   req.session.destroy();
-  res.redirect('/')
+  res.redirect('/admin')
 
 })
 
