@@ -144,7 +144,7 @@ Theme Name: cucc
   max-width: 55px;
   width: 50%;
   font-size: 10px;
-  background-color: rgb(13, 13, 114);
+  background-color: #4f65f1;
   padding: 2px;
   border-radius: 50px;
   height: 55px;
@@ -365,7 +365,6 @@ Theme Name: cucc
 }
 
 @media (min-width: 300px) and (max-width: 525px) {
-  
   .fixedButton {
     position: fixed;
     top: 100px;
