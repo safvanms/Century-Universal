@@ -6,6 +6,7 @@
     "start": "nodemon ./bin/www"
   },
   "dependencies": {
+    "@narendrayogi/how-old": "^1.0.0",
     "ajax": "^0.0.4",
     "bcrypt": "^5.0.1",
     "cloudinary": "^1.32.0",
