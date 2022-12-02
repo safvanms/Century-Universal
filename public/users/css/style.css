@@ -39,6 +39,7 @@ Theme Name: cucc
   padding: 12px 16px;
   text-decoration: none;
   display: block;
+  width: max-content;
 }
 
 /* Change color of dropdown links on hover */
@@ -441,6 +442,20 @@ Theme Name: cucc
          display: none;
        }
 }
+
+@media (min-width: 525px)  {
+.logout-btn {
+ display: none;
+
+}
+}
+
+
+
+
+
+
+
 
 .formnum {
   border: 1px solid #ced4da;
