@@ -25,20 +25,23 @@
                                 <tbody>
                                     {{#each news}}
                                     <tr>
-                                        <td>{{this.month}}</td>
+                                        <td  style=" text-transform: capitalize; ">{{this.month}}</td>
                                         <td>{{this.eventdate}}</td>
+
                                         <td style="overflow: hidden;
-max-width: 200px;
-word-wrap: break-word;">{{this.headline}}</td>
+                                            max-width: 200px;
+                                            word-wrap: break-word;">{{this.headline}}</td>
+
                                         <td style="overflow: auto;
-max-width: 300px;
-word-wrap: break-word; height: ; ">{{this.news}}</td>
+                                        max-width: 300px;
+                                        word-wrap: break-word; height: ; ">{{this.news}}
+                                        </td>
 
 
                                         <td>
 
                                             <a class='btn btn-outline-danger' href="/admin/delete-news/{{this._id}}"
-                                                onclick="return confirm('Are you want to delete ?')">delete</a>
+                                                onclick="return confirm('Do you want to delete ?')">delete</a>
                                         </td>
 
 

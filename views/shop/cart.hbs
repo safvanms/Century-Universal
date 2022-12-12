@@ -34,11 +34,11 @@
 							<tr class="table-body-row">
 
 								<td class="product-remove"><a
-										onclick="deleteCart('{{this._id}}','{{this.product._id}}')"><i
-											class="far fa-window-close"></i></a></td>
+										onclick="deleteCart('{{this._id}}','{{this.product._id}}')">
+										<i class="far fa-window-close"></i></a></td>
+								<td class="product-image"><img src="{{product.images.[0].path}}" alt="product" >
+								</td>
 
-								<td class="product-image"><img src="/upload/{{this.product.images.[0].filename}}" .jpg
-										</td>
 								<td class="product-name">{{this.product.productName}}</td>
 								<td class="product-price">₹ {{this.product.price}}/-</td>
 
@@ -113,7 +113,7 @@
 
 			success: (response) => {
 				if (response.removeProduct) {
-					alert(swal("Removed !", "Product removed by Cart", "success"))
+					swal("Removed !", "Product removed by Cart", "success")
 					location.reload()
 				} else {
 					document.getElementById(proId).innerHTML = quantity + count

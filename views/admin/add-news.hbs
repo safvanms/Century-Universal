@@ -13,7 +13,7 @@
                     <div class="form-group mt-5">
                         <label for="category">Enter Event Month</label>
                         <input type="text" class="form-control mb-4" name="month" id="exampleInputEmail1"
-                            aria-describedby="emailHelp" placeholder="Enter the Month" required />
+                            aria-describedby="emailHelp" placeholder="Enter the Month" maxlength="3" style=" text-transform: capitalize; " required />
 
                     </div>
 
@@ -26,14 +26,14 @@
 
                     <div class="form-group mt-5">
                         <label for="category">Headline</label>
-                        <input type="text" class="form-control mb-4" name="headline" id="exampleInputEmail1"
-                            aria-describedby="emailHelp" placeholder="Headline" required />
+                        <textarea type="text" class="form-control mb-4" name="headline" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Headline" required style="height: 100px; width:300px; " ></textarea>
 
                     </div>
 
                     <div class="form-group mb-3">
                         <label for="description">News</label>
-                        <textarea class="form-control validate" name="news"  rows="3" required=""></textarea>
+                        <textarea class="form-control validate" name="news"  rows="15" required=""></textarea>
                     </div>
 
 

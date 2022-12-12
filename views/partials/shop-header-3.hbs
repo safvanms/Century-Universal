@@ -64,9 +64,29 @@
 										
 										
 										
-										{{#if user}} {{user.lname}}
+										{{#if user}}<a href="/user">{{user.lname}}</a>  
+										<ul class="sub-menu"
+											style=" background-color: rgb(0, 0, 0); border-radius: 15px;">
+											
+											{{!-- <div  style="color: white; font-size: 15px; float: left;">
+												<p>{{user.fname}}{{user.lname}}</p>
+												<p>{{user.number}}</p>
+											</div> --}}
+
+											<li><a style="color: white;" href="/order-list">Orders&nbsp;<span
+														class="fas fa-shopping-bag" style=" font-size: 15px; "></span>
+												</a></li>
+
+											<li><a style="color: white;" href="/cart">Cart&nbsp;<span
+														class="fas fa-shopping-cart"
+														style=" font-size: 15px; "></span></a></li>
+
+											<li><a style="color: white;" href="/logout">Logout</a></li>
+
+										</ul>
 										{{else}}
-										<a class="shopping-cart" href="/login"><i class="fas fa-user"></i><span style="font-size: 12px;"> LOGIN</span></a>
+										<a class="shopping-cart" href="/login"><i class="fas fa-user"
+												style="margin-bottom: 10px;"> Login</i></a>
 										{{/if}}
 
 									</div>

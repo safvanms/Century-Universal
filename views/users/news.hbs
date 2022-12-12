@@ -16,17 +16,17 @@
                             {{#each news}}
                             <div class="col-md-6">
                                 <div class="row mt-4" >
-                                    <div class="blog-section-date col-md-2 col-sm-2 col-xs-12 noPadding">
+                                    <div class="blog-section-date col-md-2 col-sm-2 col-xs-12 noPadding" style="margin-left: 10px;">
 
-                                        <p class="month">{{this.month}}</p>
-                                        <p class="date">{{this.eventdate}}</p>
+                                        <p class="month" style=" text-transform: capitalize; ">{{this.month}}</p>
+                                        <p class="date" style="white-space: nowrap; margin-top: 10px;">{{this.eventdate}}</p>
 
 
                                     </div>
                                     <div class="container-fluid">
 
                                         <div class="blog-section-description col-md-2 col-sm-2 col-xs-12 noPadding">
-                                            <h2 class="newshead">{{this.headline}} </h2>
+                                            <h2 class="newshead" style="margin-bottom: 10px;">{{this.headline}} </h2>
                                             <p class="newscntnt">{{this.news}}</p>
 
 
