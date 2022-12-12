@@ -148,7 +148,7 @@ Theme Name: cucc
   max-width: 55px;
   width: 50%;
   font-size: 10px;
-  background-color: #4f65f1;
+  background-image: linear-gradient(#3f58fc, #03189c);
   padding: 2px;
   border-radius: 50px;
   height: 55px;
@@ -164,7 +164,7 @@ Theme Name: cucc
   width: 50%;
   font-size: 10px;
   padding: 13px;
-  background-color: #155818;
+  background-image: linear-gradient(rgb(57, 241, 57), rgb(4, 167, 4));
   border-radius: 50px;
   height: 55px;
   color: white;
