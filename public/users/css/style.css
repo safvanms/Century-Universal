@@ -171,14 +171,16 @@ Theme Name: cucc
 }
 
 .news-ext:hover {
-  background-color: rgb(0, 0, 0);
-  color: #fff;
+  background-color: grey;
+  color: white;
+  box-shadow: 3px 3px 3px 2px rgb(26,25,25);
 }
 
 /*On Hover Color Change*/
 #btntop:hover {
   background-color: #000000;
-  color: white;
+  color: rgb(209, 209, 209);
+  box-shadow: 3px 3px 3px 2px rgb(26, 25, 25);
 }
 .gotop {
   color: white;
