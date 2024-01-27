@@ -31,7 +31,7 @@ module.exports = {
         return new Promise((resolve, reject) => { 
             client.verify.v2.services(serviceSid)
                 .verificationChecks
-                .create({ to: `+91${phoneNumber}`, code: otp.otp })
+                .create({ to: `+91${phoneNumber}`, code: otp })
                 .then((verified) => {
                     console.log(verified);
                     resolve(verified);
